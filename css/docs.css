@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v5/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(http://themes.googleusercontent.com/static/fonts/lato/v7/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');
+}
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'), url(http://themes.googleusercontent.com/static/fonts/robotocondensed/v9/b9QBgL0iMZfDSpmcXcE8nPZRQUbYfRc-1FWT9T9EE8M.woff) format('woff');
+}
+@font-face {
+  font-family: 'Ubuntu Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(http://themes.googleusercontent.com/static/fonts/ubuntumono/v4/ViZhet7Ak-LRXZMXzuAfkbrIa-7acMAeDBVuclsi6Gc.woff) format('woff');
+}
+
+<link href='http://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+
+body, html { margin: 0; padding: 0; height: 100%; }
+section, article { display: block; padding: 0; }
+
+body {
+  background: #0C4650;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-size: 200%;
+}
+
+p { margin-top: 0; }
+
+h2, h3 {
+  font-weight: bold;
+  /*margin-bottom: .7em;*/
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+h2 { font-size: 180%; }
+h3 { 
+	font-size: 130%; 
+	color: #666;
+	margin: 0;
+}
+article > h2:first-child, section:first-child > h2 { margin-top: 0; }
+
+
+a, a:visited, a:link, .quasilink {
+    /*color: #A21313;*/
+    color: #bbb;
+  text-decoration: none;
+}
+
+em {
+  font-style: normal;
+  padding-right: 2px;
+  color: #DF0917;
+}
+
+figure {
+	margin: 0 0 10px 0;
+}
+figcaption {
+	margin: 0;
+	font-weight: bold;
+	text-align: center;
+	font-size: 24;
+}
+
+.quasilink {
+  cursor: pointer;
+}
+
+article {
+  max-width: 1200px;
+  margin: 0 0 0 40px;
+  border-left: 20px solid #0C4650;
+  border-right: 1px solid #ddd;
+  padding: 12px 50px 100px 50px;
+  background: #f2f2f2;
+  z-index: 2;
+  position: relative;
+  min-height: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+article ul {
+}
+
+.console {
+	background-color: white;
+	border: 1px solid #ccc;
+	padding: 0.1em;
+}
+.console span {
+	margin-left: 0.5em;
+	color: #DF0917;
+	font-weight: bold;
+}
+
+@media screen and (min-width: 1000px) {
+  article {
+    margin: 0 auto;
+  }
+  /*#nav {
+    right: 50%;
+    width: auto;
+  }*/
+}
+/*
+#nav ul {
+  display: block;
+  margin: 0; padding: 0;
+}
+
+#nav li {
+  display: block;
+}
+*/
+
+section {
+  border-top: 1px solid #E30808;
+  margin: 1.5em 0;
+}
+
+section.first {
+  border: none;
+  margin-top: 0;
+}
+
+code {
+  padding: 0 2px;
+}
+
+strong {
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+.field {
+  border: 1px solid #A21313;
+}

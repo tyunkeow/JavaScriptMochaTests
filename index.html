@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CodeMirror Tests</title>
+  
+  <script src="js/lib/codemirror.js"></script>
+  <script src="js/addon/edit/matchbrackets.js"></script>
+  <script src="js/addon/comment/continuecomment.js"></script>
+  <script src="js/addon/comment/comment.js"></script>
+  
+  <link rel="stylesheet" href="css/codemirror.css"/>
+  <link rel="stylesheet" href="css/docs.css"/>
+  <style type="text/css">.CodeMirror {border: 1px solid #ccc; margin-top: 20px;}</style>
+  <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+
+
+
+  <script src="js/lib/jquery.1.8.3.js"></script>
+  <script src="js/lib/jquery-ui.1.9.1.min.js"></script>    
+
+  <script type="text/javascript" src="js/mode/javascript/javascript.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.fullPage.js"></script>  
+  <script> 
+$(document).ready(function() {
+    $.fn.fullpage({
+		anchors: ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16'],
+		navigation: true,
+		navigationPosition: 'left',
+		resize: false
+    });
+	
+	window.editor = [];
+
+	for (var i = 1; i < 12; i++) {
+
+		var textarea = document.getElementById("code" + i);
+		if (textarea) {
+			window.editor[i] = CodeMirror.fromTextArea(textarea, {
+				lineNumbers: true,
+				matchBrackets: true,
+				continueComments: "Enter",
+				extraKeys: {
+					"Ctrl-Q": "toggleComment"
+				}
+			});
+		}
+	};
+	
+	
+	//var tm = editor.setBookmark({line: 3, ch: 4})
+	//var marker = editor.markText(tm.find(), {line: tm.find().line, ch: tm.find().ch+4}, { className: "cm-error" });
+	function token (stream, state) {
+		if (stream.next() === "this") {
+			return "cm-header";
+		} else {
+			return "cm-header";
+		}
+	}
+	var mymode = { token: token };
+	
+	window.executeSample = function (i) {
+		
+		// wrap function to avoid name clashes for 'i'
+		var log = function (i) {
+			return function (obj) {
+			var console = document.getElementById("out" + i)
+			console.innerHTML = JSON.stringify(obj);
+		}}(i);
+		
+		try {
+			eval(editor[i].getValue());			
+		} catch (error) {
+			log(error.message);
+			throw error;
+		}
+	}
+	
+});
+
+
+  </script>
+  
+</head>
+<body>
+	
+	
+	<article class="section" id="section0">
+	<h1>Was ich noch nie über JavaScript wissen wollte, aber herauszufinden gezwungen war.</h1>
+	<span class="toSlide" data-index="3">Click here to go to slide 3</span>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Die Welt aus Sicht eines Java-Entwicklers</h2>
+	<center>
+	<table>
+		<tbody>
+		<tr>
+			<td><figure><img src="images/Rich.jpg" width="200" height="200" /><figcaption>Objective-C</figcaption><figure></td>
+			<td><figure><img src="images/KillBill.jpg" width="200" height="200" /><figcaption>Scala</figcaption><figure></td>
+			<td><figure><img src="images/DocBrown.jpg" width="200" height="200" /><figcaption>Haskell</figcaption><figure></td>
+			<td><figure><img src="images/Pippi.jpg" width="200" height="200" /><figcaption>Ruby</figcaption><figure></td>
+	    </tr>
+		<tr>
+			<td><figure><img src="images/Picard.jpg" width="200" height="200" /><figcaption>Java</figcaption><figure></td>
+			<td><figure><img src="images/Dr_Evil.jpg" width="200" height="200" /><figcaption>C/C++</figcaption><figure></td>
+			<td><figure><img src="images/Yoda.jpg" width="200" height="200" /><figcaption>Lisp</figcaption><figure></td>
+			<td><figure><img src="images/spaghettibaby.jpg" width="200" height="200" /><figcaption>JavaScript</figcaption><figure></td>
+	    </tr>
+		<tr>
+			<td><figure><img src="images/Freak.jpg" width="200" height="200" /><figcaption>Perl</figcaption><figure></td>
+			<td><figure><img src="images/BatmanJoker.jpg" width="200" height="200" /><figcaption>PHP</figcaption><figure></td>
+			<td><figure><img src="images/Orly.jpg" width="200" height="200" /><figcaption>VisualBasic</figcaption><figure></td>
+			<td><figure><img src="images/Urmensch.jpg" width="200" height="200" /><figcaption>Cobol</figcaption><figure></td>
+	    </tr>
+		</tbody>
+    </table>
+	</center>
+	</article>
+	
+	
+	
+	<article class="section">
+		<h2>Warum mögen wir kein JavaScript?</h2>
+		
+		<ul>
+			<li>Inkonsistenter Browser-Support</li>
+			<li>Kein IDE Support
+				<ul>
+					<li>Umständlicher Wechsel zwischen (Text-)Editor und Browser</li>
+					<li>Bei Serverseitig generierten Seiten: zusätzliches Re-Deployment</li>
+				</ul>
+			</li>
+			<li>Keine Unit-Tests</li>
+			<li>Keine Module und sauberes Dependency-Management</li>
+			<li>Keine strenge Typisierung</li>
+			<li>DOM-Manipulation umständlich</li>
+		</ul>
+	</article>
+		
+
+	<article class="section">
+		<h2>Konsequenzen?</h2>
+		
+		<ul>
+			<li>Wir haben keine Lust uns mit JavaScript ernsthaft zu beschäftigen</li>
+			<li>Trial-And-Error Programmierweise</li>
+			<li>Niedrige Qualitätskriterien für JavaScript-Code</li>
+			<li>Keine Tests => Keine Refactorings</li>
+		</ul>
+		
+		<h2>Das ist <em>unprofessionell</em>!</h2>
+	</article>
+		
+
+
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentypen</h3>	
+		<ul>
+			<li>String, Number, Boolean</li>
+			<li>Objekt</li>
+			<li>null, undefined</li>
+		</ul>
+	</article>
+		
+		
+		
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Primitive Datentypen</h3>	
+	<textarea id="code1">
+var s = 'Hello World!';
+var i = 5;
+var b = true;
+
+log(typeof s);
+	</textarea>
+	<input type="submit" onclick="executeSample(1)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out1"></span>
+	</div>
+	</article>
+		
+				
+				
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentyp 'object'</h3>	
+	<textarea id="code2">
+// Objektliteral
+var director = {
+  first_name: 'Alfred',    
+  'year-of-birth': 1899,
+};
+director['last_name'] = 'Hitchcock';
+
+
+log(typeof director);
+	</textarea>
+	<input type="submit" onclick="executeSample(2)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out2"></span>
+	</div>
+	</article>
+		
+				
+				
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentyp 'function'</h3>	
+	<textarea id="code3">
+// Funktionsliteral
+var f = function (i) {
+	return i+1;
+}
+
+
+log(typeof f);
+	</textarea>
+	<input type="submit" onclick="executeSample(3)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out3"></span>
+	</div>
+	</article>
+		
+				
+				
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentypen 'undefined' und 'null'</h3>	
+	<textarea id="code4">
+var u;
+var n = null;
+
+log(typeof u);
+	</textarea>
+	<input type="submit" onclick="executeSample(4)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out4"></span>
+	</div>
+	</article>
+		
+
+
+	<article class="section">
+	<h2>Was ist "<em>this</em>"?</h2>	
+	<h3>Aufrufmuster</h3>	
+		<ul>
+			<li>Funktion</li>
+			<li>Objekt</li>
+			<li>Konstruktor</li>
+			<li>Apply</li>
+		</ul>
+	</article>
+
+
+						
+	<article class="section">
+	<h2>Was ist "this"?</h2>	
+	<h3>Aufrufmuster: <em>Funktion</em></h3>	
+	<textarea id="code5">
+var inc = function() {
+    this.value += 1;
+};
+
+inc();
+
+log(window.value);
+	</textarea>
+	<input type="submit" onclick="executeSample(5)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out5"></span>
+	</div>
+	</article>
+
+	
+	
+	<article class="section">
+	<h2>Was ist "this"?</h2>	
+	<h3>Aufrufmuster: <em>Methode</em></h3>	
+	<textarea id="code6">
+var inc = function() {
+    this.value += 1;
+};
+
+var counter = {
+  value: 12,
+  increment: inc
+}
+
+counter.increment();
+
+log(counter.value);
+	</textarea>
+	<input type="submit" onclick="executeSample(6)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out6"></span>
+	</div>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Was ist "this"?</h2>
+	<h3>Aufrufmuster: <em>Konstruktor</em></h3>	
+	<textarea id="code7">
+var I = function(i) {
+    this.value = i;
+};
+
+
+var i = new I(5);
+
+log(i.value);
+	</textarea>
+	<input type="submit" onclick="executeSample(7)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out7"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Was ist "this"?</h2>
+	<h3>Aufrufmuster: <em>Apply</em></h3>	
+	<textarea id="code8">
+var inc = function() {
+    this.value += 1;
+};
+
+var counter = {
+  value: 0
+};
+
+inc.apply(counter, null);
+
+log(counter.value);
+	</textarea>
+	<input type="submit" onclick="executeSample(8)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out8"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Was ist "this"?</h2>
+	<h3>Quiz</h3>	
+	<textarea id="code9">
+var counter = { 
+  value: 10,
+  increment: function() {
+	//var self = this;
+    var inc = function() {
+      this.value += 1;
+    };
+
+    inc();
+  }
+};
+
+counter.increment();
+
+log(counter.value);
+	</textarea>
+	<input type="submit" onclick="executeSample(9)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out9"></span>
+	</div>	
+	</article>
+	
+	
+	
+	
+</body>
+</html>
