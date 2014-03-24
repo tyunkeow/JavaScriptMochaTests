@@ -24,7 +24,7 @@
   <script> 
 $(document).ready(function() {
     $.fn.fullpage({
-		anchors: ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16'],
+		anchors: ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p28'],
 		navigation: true,
 		navigationPosition: 'left',
 		resize: false
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	
 	window.editor = [];
 
-	for (var i = 1; i < 12; i++) {
+	for (var i = 1; i < 20; i++) {
 
 		var textarea = document.getElementById("code" + i);
 		if (textarea) {
@@ -86,8 +86,8 @@ $(document).ready(function() {
 	
 	
 	<article class="section" id="section0">
-	<h1>Was ich noch nie über JavaScript wissen wollte, aber herauszufinden gezwungen war.</h1>
-	<span class="toSlide" data-index="3">Click here to go to slide 3</span>
+	<h1>Was ich noch nie über <em>JavaScript</em> wissen wollte, ...<br></h1>
+	<h3> ...aber herauszufinden gezwungen war.</h3>
 	</article>
 	
 	
@@ -124,34 +124,40 @@ $(document).ready(function() {
 	
 	<article class="section">
 		<h2>Warum mögen wir kein JavaScript?</h2>
-		
+		<h3>Tausend gute Gründe...</h3>
 		<ul>
 			<li>Inkonsistenter Browser-Support</li>
 			<li>Kein IDE Support
 				<ul>
-					<li>Umständlicher Wechsel zwischen (Text-)Editor und Browser</li>
-					<li>Bei Serverseitig generierten Seiten: zusätzliches Re-Deployment</li>
+					<li>Wechsel zwischen (Text-)Editor und Browser</li>
+					<li>Bei serverseitig generierten Seiten ggf. Re-Deployment</li>
 				</ul>
 			</li>
-			<li>Keine Unit-Tests</li>
+			<li>Keine Unit-Tests möglich</li>
 			<li>Keine Module und sauberes Dependency-Management</li>
 			<li>Keine strenge Typisierung</li>
 			<li>DOM-Manipulation umständlich</li>
+			<li>...</li>
 		</ul>
 	</article>
 		
 
+
 	<article class="section">
-		<h2>Konsequenzen?</h2>
-		
+	    <h2>Wir haben keine Lust JavaScript zu <em>verstehen</em></h2> 
+		<h3>und das ist gar nicht gut, denn wir...</h3>
 		<ul>
-			<li>Wir haben keine Lust uns mit JavaScript ernsthaft zu beschäftigen</li>
-			<li>Trial-And-Error Programmierweise</li>
-			<li>Niedrige Qualitätskriterien für JavaScript-Code</li>
-			<li>Keine Tests => Keine Refactorings</li>
+		  <li>... arbeiten auf Basis von <em>Trial-And-Error</em></li>
+		  <li>... haben <em>niedrige Qualitätskriterien</em> für JavaScript-Code</li>
+		  <li>... schreiben keine <em>Unit-Tests</em></li>
 		</ul>
+	</article>
+
+
 		
-		<h2>Das ist <em>unprofessionell</em>!</h2>
+	<article class="section">
+		<h1>Das ist <em>unprofessionell</em>!</h1>
+		<h3>Und passt auch nicht zur Ausrichtung der Architektur.</h3>
 	</article>
 		
 
@@ -191,14 +197,13 @@ log(typeof s);
 	<h3>Datentyp 'object'</h3>	
 	<textarea id="code2">
 // Objektliteral
-var director = {
-  first_name: 'Alfred',    
-  'year-of-birth': 1899,
+var rockstar = {
+    name: 'Roland Wälzlein',    
 };
-director['last_name'] = 'Hitchcock';
+rockstar['instrument'] = 'Guitar';
+rockstar.numberOfGigs = 1000;
 
-
-log(typeof director);
+log(typeof rockstar);
 	</textarea>
 	<input type="submit" onclick="executeSample(2)" value="eval"/>
 	<div class="console">
@@ -235,6 +240,8 @@ log(typeof f);
 var u;
 var n = null;
 
+// u += 1;
+
 log(typeof u);
 	</textarea>
 	<input type="submit" onclick="executeSample(4)" value="eval"/>
@@ -262,6 +269,8 @@ log(typeof u);
 	<h2>Was ist "this"?</h2>	
 	<h3>Aufrufmuster: <em>Funktion</em></h3>	
 	<textarea id="code5">
+window.value = 5;
+
 var inc = function() {
     this.value += 1;
 };
@@ -287,8 +296,8 @@ var inc = function() {
 };
 
 var counter = {
-  value: 12,
-  increment: inc
+    value: 12,
+    increment: inc
 }
 
 counter.increment();
@@ -311,7 +320,6 @@ var I = function(i) {
     this.value = i;
 };
 
-
 var i = new I(5);
 
 log(i.value);
@@ -333,7 +341,7 @@ var inc = function() {
 };
 
 var counter = {
-  value: 0
+    value: 0
 };
 
 inc.apply(counter, null);
@@ -353,15 +361,14 @@ log(counter.value);
 	<h3>Quiz</h3>	
 	<textarea id="code9">
 var counter = { 
-  value: 10,
-  increment: function() {
-	//var self = this;
-    var inc = function() {
-      this.value += 1;
-    };
-
-    inc();
-  }
+    value: 10,
+    increment: function() {
+	    //var self = this;
+        var inc = function() {
+            this.value += 1;
+        };
+        inc();
+    }
 };
 
 counter.increment();
@@ -371,6 +378,247 @@ log(counter.value);
 	<input type="submit" onclick="executeSample(9)" value="eval"/>
 	<div class="console">
 		<span>></span><span id="out9"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Scoping</h2>
+	<h3>Definition lokaler Variablen</h3>	
+	<textarea id="code10">
+value = 0;
+
+var foo = function() {
+    value = 10;
+}
+
+foo();
+
+log(value);
+	</textarea>
+	<input type="submit" onclick="executeSample(10)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out10"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Scoping</h2>
+	<h3>Beispiel</h3>	
+	<textarea id="code11">
+value = 0;
+
+var inc = function() {
+    value += 1;
+};
+
+var counter = function() {
+    var value = 10;
+    inc();
+}
+
+counter();
+
+log(value);
+	</textarea>
+	<input type="submit" onclick="executeSample(11)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out11"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Closures</h2>
+	<h3>Beispiel</h3>	
+	<textarea id="code12">
+var myClosure = function () {
+    var value = 7;
+
+    return function() { 
+        return value += 1;
+    }
+};
+
+var nextInt = myClosure();
+var i = nextInt();
+
+log(i);
+	</textarea>
+	<input type="submit" onclick="executeSample(12)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out12"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>	
+	<h3></h3>	
+		<ul>
+			<li>Prototypisch</li>
+			<li>Pseudo-Klassisch</li>
+			<li>Funktional</li>
+		</ul>
+	</article>
+		
+		
+		
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Prototypisch (1)</h3>	
+	<textarea id="code13">
+var rockstar = {
+    karma: 10,
+    gigIds: [],
+};
+
+var roli = Object.create(rockstar);
+
+log(roli.karma);
+//log(roli.__proto__);
+//var zenMaster = { karma: 2000 };
+	</textarea>
+	<input type="submit" onclick="executeSample(13)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out13"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Prototypisch (2): Verwendung von "this" führt zu Problemen</h3>	
+	<textarea id="code14">
+var rockstar = {
+    karma: 10,
+    addKarma: function (i) {
+	    this.karma += i;
+    }
+};
+
+var roli = Object.create(rockstar);
+roli.addKarma(50);
+karmaAdder = roli.addKarma;
+karmaAdder(40);
+
+log(roli.karma);
+	</textarea>
+	<input type="submit" onclick="executeSample(14)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out14"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Prototypisch (3): Verwendung von "this" führt zu Problemen</h3>	
+	<textarea id="code15">
+var rockstarActions = [
+    { action: 'Stagedive', level: 1 },
+	{ action: 'Beat up paparazzi', level: 2 }, 
+	{ action: 'Destroy hotel room', level: 3 } ];
+
+var rockstar = {
+  level: 2,
+  allowedActions: function () {
+    return rockstarActions.filter(function (action) {
+      	  return action.level &lt;= this.level;
+    });
+  }
+};
+
+var tmp = rockstar.allowedActions();
+
+log(tmp);</textarea>
+	<input type="submit" onclick="executeSample(15)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out15"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Pseudo-Klassisch</h3>	
+	<textarea id="code16">
+var Rockstar = function () {
+  this.karma = 10;
+  this.gigIds = [];
+};
+
+//Rockstar.prototype.gigIds = [];
+
+var roli = new Rockstar();
+
+log(roli.karma);
+	</textarea>
+	<input type="submit" onclick="executeSample(16)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out16"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Funktional (1)</h3>	
+	<textarea id="code17">
+var rockstar = function () {
+  self = {
+    karma: 10,
+    gigIds: []
+  }
+  return self;
+};
+
+var roli = rockstar();
+
+log(roli.gigIds);
+	</textarea>
+	<input type="submit" onclick="executeSample(17)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out17"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Funktional (2)</h3>	
+	<textarea id="code18">
+window.rockstarActions = [
+    { action: 'Stagedive', level: 1 },
+	{ action: 'Beat up paparazzi', level: 2 }, 
+	{ action: 'Destroy hotel room', level: 3 } ];
+var rockstar = function () {
+  self = {
+	level: 2,
+    allowedActions: function () {
+      return rockstarActions.filter(function (action) {
+        return action.level &lt;= self.level;
+      });
+    }
+  };
+  return self;
+};
+
+var roli = rockstar();
+log(roli.allowedActions());</textarea>
+	<input type="submit" onclick="executeSample(18)" value="eval"/>
+	<div class="console">
+		<span>></span><span id="out18"></span>
 	</div>	
 	</article>
 	

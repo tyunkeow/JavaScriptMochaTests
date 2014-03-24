@@ -1,10 +1,4 @@
 @font-face {
-  font-family: 'Source Sans Pro';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Source Sans Pro'), local('SourceSansPro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v5/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
-}
-@font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
@@ -31,20 +25,24 @@ section, article { display: block; padding: 0; }
 body {
   background: #0C4650;
   font-family: 'Lato', Helvetica, Arial, sans-serif;
-  font-size: 200%;
+  font-size: 230%;
 }
 
 p { margin-top: 0; }
 
-h2, h3 {
+h1, h2, h3 {
   font-weight: bold;
   /*margin-bottom: .7em;*/
   font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
   margin: 0;
 }
-h2 { font-size: 180%; }
+h1 { 
+	font-size: 220%; 
+	margin-top: 2em;
+}
+h2 { font-size: 160%; }
 h3 { 
-	font-size: 130%; 
+	font-size: 120%; 
 	color: #666;
 	margin: 0;
 }
@@ -70,7 +68,7 @@ figcaption {
 	margin: 0;
 	font-weight: bold;
 	text-align: center;
-	font-size: 24;
+	font-size: 80%;
 }
 
 .quasilink {
@@ -92,6 +90,8 @@ article {
 }
 
 article ul {
+	list-style-type: square;
+	line-height: 150%; 
 }
 
 .console {
@@ -124,6 +124,10 @@ article ul {
   display: block;
 }
 */
+
+table {
+	margin-top: 0.5em;
+}
 
 section {
   border-top: 1px solid #E30808;

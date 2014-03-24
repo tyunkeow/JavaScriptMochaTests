@@ -3,24 +3,6 @@ if (typeof process !== 'undefined' && process.title == 'node') {
 	var s = require("should")
 }
 
-//
-//describe('test', function(){
-//  describe('#test()', function(){
-//    it('should ', function(){
-//      var name = { name: "Alfred" };
-//      var x = Object.create(name);
-//      x.name.should.equal("Alfred");
-//      var director = {};
-//      director.name = 'Woody Allen';
-//      director['year-of-birth'] = 1935;
-//
-//
-//    })
-//  })
-//});
-//
-//
-//
 
 describe('When having a global value=17', function() {
 
@@ -120,62 +102,30 @@ describe('When having a global value=17', function() {
 			});	
 		});
 	});
+	describe('When "cat" inherits from "mammal"', function () {
+		var mammal, cat;
+		
+		beforeEach(function() {
+			mammal = {
+				name: 'Harry',
+				getName: function () {
+					return this.name;
+				},
+				children: [ 'Houdini', 'Hirsch', 'Rowohlt']
+			}
+			cat = Object.create(mammal);
+			cat.name = "Miezekatze";
+			cat.children.push('Herrmann');
+		});
+		
+		it('setting the cats name should work', function() {
+			cat.name.should.equal('Miezekatze');
+		});	
+		it('changing the cats name should not change the mammals name', function() {
+			mammal.name.should.equal('Harry');
+		});	
+		it('calling cat.getName() should return the cats name', function() {
+			cat.getName().should.equal('Miezekatze');
+		});	
+	});
 });
-//
-//describe('closure test', function() {
-//  it('should ', function() {
-//
-//
-//
-//
-//      var graph = {};
-//      var loadGraph = function (callback) {
-//        var g = { name: "Hallo" };
-//        callback(g);
-//      };
-//
-//      loadGraph(function (g) {
-//          graph = g;
-//          //console.log(graph);
-//      });
-//      graph.name.should.equal("Hallo");
-//  });
-//});
-//
-//
-
-//describe('counter', function() {
-//    var inc = function () {
-//        return this.value += 1;
-//    };
-//
-//    global.value = 0;
-//    it('should have global value 0', function(){
-//        value.should.equal(0);
-//    });
-//
-//    var counter = {
-//      value: 9
-//    };
-//
-//    it('should have counter.value 9', function() {
-//      counter.value.should.equal(9);
-//    });
-//
-//
-//    describe('#increment()', function() {
-//
-//        counter.increment = function () {
-//            helper = inc;
-//            helper();
-//        };
-//
-//        it('should not increment counter.value', function(){
-//            counter.increment();
-//            counter.value.should.equal(9);
-//        });
-//        it('should increment global.value', function(){
-//            value.should.equal(1);
-//        });
-//    })
-//});
