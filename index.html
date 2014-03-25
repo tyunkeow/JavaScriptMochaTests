@@ -1,72 +1,663 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Javascriptmochatests by tyunkeow</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1 class="header">Javascriptmochatests</h1>
-        <p class="header"></p>
-
-        <ul>
-          <li class="download"><a class="buttons" href="https://github.com/tyunkeow/JavaScriptMochaTests/zipball/master">Download ZIP</a></li>
-          <li class="download"><a class="buttons" href="https://github.com/tyunkeow/JavaScriptMochaTests/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/tyunkeow/JavaScriptMochaTests">View On GitHub</a></li>
-        </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/tyunkeow">tyunkeow</a></p>
+<head>
+  <meta charset="utf-8">
+  <title>CodeMirror Tests</title>
+  
+  <script src="js/lib/codemirror.js"></script>
+  <script src="js/addon/edit/matchbrackets.js"></script>
+  <script src="js/addon/comment/continuecomment.js"></script>
+  <script src="js/addon/comment/comment.js"></script>
+  
+  <link rel="stylesheet" href="css/codemirror.css"/>
+  <link rel="stylesheet" href="css/docs.css"/>
+  <style type="text/css">.CodeMirror {border: 1px solid #ccc; margin-top: 20px;}</style>
+  <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
 
 
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+  <script src="js/lib/jquery.1.8.3.js"></script>
+  <script src="js/lib/jquery-ui.1.9.1.min.js"></script>    
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+  <script type="text/javascript" src="js/mode/javascript/javascript.js"></script>
+  <script type="text/javascript" src="js/lib/jquery.fullPage.js"></script>  
+  <script> 
+$(document).ready(function() {
+    $.fn.fullpage({
+		anchors: ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p28'],
+		navigation: true,
+		navigationPosition: 'left',
+		keyboardScrolling: false,
+		resize: false
+    });
+	
+	window.editor = [];
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+	for (var i = 1; i < 30; i++) {
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		var textarea = document.getElementById("code" + i);
+		if (textarea) {
+			window.editor[i] = CodeMirror.fromTextArea(textarea, {
+				lineNumbers: true,
+				matchBrackets: true,
+				continueComments: "Enter",
+				extraKeys: {
+					"Ctrl-Q": "toggleComment"
+				}
+			});
+		}
+	};
+	
+	
+	//var tm = editor.setBookmark({line: 3, ch: 4})
+	//var marker = editor.markText(tm.find(), {line: tm.find().line, ch: tm.find().ch+4}, { className: "cm-error" });
+	function token (stream, state) {
+		if (stream.next() === "this") {
+			return "cm-header";
+		} else {
+			return "cm-header";
+		}
+	}
+	var mymode = { token: token };
+	
+	window.executeSample = function (i) {
 		
-  </body>
+		// wrap function to avoid name clashes for 'i'
+		var log = function (i) {
+			return function (obj) {
+			var console = document.getElementById("out" + i)
+			console.innerHTML = JSON.stringify(obj);
+		}}(i);
+		
+		try {
+			eval(editor[i].getValue());			
+		} catch (error) {
+			log(error.message);
+			throw error;
+		}
+	}
+	
+});
+
+
+  </script>
+  
+</head>
+<body>
+	
+	
+	<article class="section" id="section0">
+	<h1>Was ich noch nie über <em>JavaScript</em> wissen wollte, ...<br></h1>
+	<h3> ...aber herauszufinden gezwungen war.</h3>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Die Welt aus Sicht eines Java-Entwicklers</h2>
+	<center>
+	<table>
+		<tbody>
+		<tr>
+			<td><figure><img src="images/Rich.jpg" width="200" height="200" /><figcaption>Objective-C</figcaption><figure></td>
+			<td><figure><img src="images/KillBill.jpg" width="200" height="200" /><figcaption>Scala</figcaption><figure></td>
+			<td><figure><img src="images/DocBrown.jpg" width="200" height="200" /><figcaption>Haskell</figcaption><figure></td>
+			<td><figure><img src="images/Pippi.jpg" width="200" height="200" /><figcaption>Ruby</figcaption><figure></td>
+	    </tr>
+		<tr>
+			<td><figure><img src="images/Picard.jpg" width="200" height="200" /><figcaption>Java</figcaption><figure></td>
+			<td><figure><img src="images/Dr_Evil.jpg" width="200" height="200" /><figcaption>C/C++</figcaption><figure></td>
+			<td><figure><img src="images/Yoda.jpg" width="200" height="200" /><figcaption>Lisp</figcaption><figure></td>
+			<td><figure><img src="images/spaghettibaby.jpg" width="200" height="200" /><figcaption>JavaScript</figcaption><figure></td>
+	    </tr>
+		<tr>
+			<td><figure><img src="images/Freak.jpg" width="200" height="200" /><figcaption>Perl</figcaption><figure></td>
+			<td><figure><img src="images/BatmanJoker.jpg" width="200" height="200" /><figcaption>PHP</figcaption><figure></td>
+			<td><figure><img src="images/Orly.jpg" width="200" height="200" /><figcaption>VisualBasic</figcaption><figure></td>
+			<td><figure><img src="images/Urmensch.jpg" width="200" height="200" /><figcaption>Cobol</figcaption><figure></td>
+	    </tr>
+		</tbody>
+    </table>
+	</center>
+	</article>
+	
+	
+	
+	<article class="section">
+		<h2>Warum mögen wir kein JavaScript?</h2>
+		<h3>Tausend gute Gründe...</h3>
+		<ul>
+			<li>Inkonsistenter Browser-Support</li>
+			<li>Kein IDE Support
+				<ul>
+					<li>Wechsel zwischen (Text-)Editor und Browser</li>
+					<li>Bei serverseitig generierten Seiten ggf. Re-Deployment</li>
+				</ul>
+			</li>
+			<li>Keine Unit-Tests möglich</li>
+			<li>Keine Module und sauberes Dependency-Management</li>
+			<li>Keine strenge Typisierung</li>
+			<li>DOM-Manipulation umständlich</li>
+			<li>...</li>
+		</ul>
+	</article>
+		
+
+
+	<article class="section">
+	    <h2>Wir haben keine Lust JavaScript zu <em>verstehen</em></h2> 
+		<h3>und das ist gar nicht gut, denn wir...</h3>
+		<ul>
+		  <li>... arbeiten auf Basis von <em>Trial-And-Error</em></li>
+		  <li>... haben <em>niedrige Qualitätskriterien</em> für JavaScript-Code</li>
+		  <li>... schreiben keine <em>Unit-Tests</em></li>
+		</ul>
+	</article>
+
+
+		
+	<article class="section">
+		<h1>Das ist <em>unprofessionell</em>!</h1>
+		<h3>Und passt auch nicht zur Ausrichtung der Architektur.</h3>
+	</article>
+		
+
+
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentypen</h3>	
+		<ul>
+			<li>String, Number, Boolean</li>
+			<li>Objekt</li>
+			<li>null, undefined</li>
+		</ul>
+	</article>
+		
+		
+		
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Primitive Datentypen</h3>	
+	<textarea id="code1">
+var s = 'Hello World!';
+var i = 5;
+var b = true;
+
+log(typeof s);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(1)" >
+		<span>></span><span id="out1"></span>
+	</button>
+	</article>
+		
+				
+				
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentyp ‘object’</h3>	
+	<textarea id="code2">
+// Objektliteral
+var rockstar = {
+    name: 'Roland Wälzlein',    
+};
+rockstar['instrument'] = 'Guitar';
+rockstar.numberOfGigs = 1000;
+
+log(typeof rockstar);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(2)" >
+		<span>></span><span id="out2"></span>
+	</button>
+	</article>
+		
+				
+				
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentyp ‘function’</h3>	
+	<textarea id="code3">
+// Funktionsliteral
+var f = function (i) {
+	return i+1;
+}
+
+
+log(typeof f);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(3)" >
+		<span>></span><span id="out3"></span>
+	</button>
+	</article>
+		
+				
+				
+	<article class="section">
+	<h2>Ein paar Basics...</h2>	
+	<h3>Datentypen ‘undefined’ und ‘null’</h3>	
+	<textarea id="code4">
+var u;
+var n = null;
+
+// u += 1;
+
+log(typeof u);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(4)" >
+		<span>></span><span id="out4"></span>
+	</button>
+	</article>
+		
+
+
+	<article class="section">
+	<h2>Was ist “<em>this</em>” ?</h2>	
+	<h3>Aufrufmuster</h3>	
+		<ul>
+			<li>Funktion</li>
+			<li>Objekt</li>
+			<li>Konstruktor</li>
+			<li>Apply</li>
+		</ul>
+	</article>
+
+
+						
+	<article class="section">
+	<h2>Was ist “this” ?</h2>	
+	<h3>Aufrufmuster: <em>Funktion</em></h3>	
+	<textarea id="code5">
+window.value = 5;
+
+var inc = function() {
+    this.value += 1;
+};
+
+inc();
+
+log(window.value);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(5)" >
+		<span>></span><span id="out5"></span>
+	</button>
+	</article>
+
+	
+	
+	<article class="section">
+	<h2>Was ist “this” ?</h2>	
+	<h3>Aufrufmuster: <em>Methode</em></h3>	
+	<textarea id="code6">
+var inc = function() {
+    this.value += 1;
+};
+
+var counter = {
+    value: 12,
+    increment: inc
+}
+
+counter.increment();
+
+log(counter.value);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(6)" >
+		<span>></span><span id="out6"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Was ist “this” ?</h2>
+	<h3>Aufrufmuster: <em>Konstruktor</em></h3>	
+	<textarea id="code7">
+var I = function(i) {
+    this.value = i;
+};
+
+var i = new I(5);
+
+log(i.value);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(7)" >
+		<span>></span><span id="out7"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Was ist “this” ?</h2>
+	<h3>Aufrufmuster: <em>Apply</em></h3>	
+	<textarea id="code8">
+var inc = function() {
+    this.value += 1;
+};
+
+var counter = {
+    value: 0
+};
+
+inc.apply(counter, null);
+
+log(counter.value);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(8)" >
+		<span>></span><span id="out8"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Was ist “this” ?</h2>
+	<h3>Quiz</h3>	
+	<textarea id="code9">
+var counter = { 
+    value: 10,
+    increment: function() {
+	    //var self = this;
+        var inc = function() {
+            this.value += 1;
+        };
+        inc();
+    }
+};
+
+counter.increment();
+
+log(counter.value);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(9)" >eval</button>
+	<div class="console">
+		<span>></span><span id="out9"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Scoping</h2>
+	<h3>Definition lokaler Variablen</h3>	
+	<textarea id="code10">
+value = 0;
+
+var foo = function() {
+    value = 10;
+}
+
+foo();
+
+log(value);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(10)" >eval</button>
+	<div class="console">
+		<span>></span><span id="out10"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Scoping</h2>
+	<h3>Beispiel</h3>	
+	<textarea id="code11">
+value = 0;
+
+var inc = function() {
+    value += 1;
+};
+
+var counter = function() {
+    var value = 10;
+    inc();
+}
+
+counter();
+
+log(value);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(11)" >eval</button>
+	<div class="console">
+		<span>></span><span id="out11"></span>
+	</div>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Closures</h2>
+	<h3>Beispiel</h3>	
+	<textarea id="code12">
+var myClosure = function () {
+    var value = 7;
+
+    return function() { 
+        return value += 1;
+    }
+};
+
+var nextInt = myClosure();
+var i = nextInt();
+
+log(i);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(12)" >
+		<span>></span><span id="out12"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>	
+	<h3></h3>	
+		<ul>
+			<li>Prototypisch</li>
+			<li>Pseudo-Klassisch</li>
+			<li>Funktional</li>
+		</ul>
+	</article>
+		
+		
+		
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Prototypisch (1)</h3>	
+	<textarea id="code13">
+var rockstar = {
+    karma: 10,
+    gigIds: [],
+};
+
+var roli = Object.create(rockstar);
+
+log(roli.karma);
+//log(roli.__proto__);
+//var zenMaster = { karma: 2000 };
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(13)" >
+		<span>></span><span id="out13"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Prototypisch (2): Verwendung von "this" führt zu Problemen</h3>	
+	<textarea id="code14">
+var rockstar = {
+    karma: 10,
+    addKarma: function (i) {
+	    this.karma += i;
+    }
+};
+
+var roli = Object.create(rockstar);
+roli.addKarma(50);
+karmaAdder = roli.addKarma;
+karmaAdder(40);
+
+log(roli.karma);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(14)" >
+		<span>></span><span id="out14"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Prototypisch (3): Verwendung von "this" führt zu Problemen</h3>	
+	<textarea id="code15">
+var rockstarActions = [
+    { action: 'Stagedive', level: 1 },
+	{ action: 'Hit paparazzi', level: 2 }, 
+	{ action: 'Destroy hotel room', level: 3 } ];
+
+var rockstar = {
+  level: 2,
+  allowedActions: function () {
+    return rockstarActions.filter(function (action) {
+      	  return action.level &lt;= this.level;
+    });
+  }
+};
+
+var tmp = rockstar.allowedActions();
+
+log(tmp);</textarea>
+	<button type="button" class="console" onclick="executeSample(15)" >
+		<span>></span><span id="out15"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Pseudo-Klassisch (1)</h3>	
+	<textarea id="code16">
+var Rockstar = function () {
+  this.karma = 10;
+  this.gigIds = [];
+};
+
+//Rockstar.prototype.gigIds = [];
+
+var roli = new Rockstar();
+
+log(roli.karma);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(16)" >
+		<span>></span><span id="out16"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Pseudo-Klassisch (2)</h3>	
+	<textarea id="code17">
+var Human = function () {
+  this.karma = 10;
+};
+
+var Rockstar = function () {
+  this.gigIds = [];
+};
+
+Rockstar.prototype = new Human();
+
+var roli = new Rockstar();
+
+log(roli.karma);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(17)">
+		<span>></span><span id="out17"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Funktional (1)</h3>	
+	<textarea id="code18">
+var rockstar = function () {
+  self = {
+    karma: 10,
+    gigIds: []
+  }
+  return self;
+};
+
+var roli = rockstar();
+
+log(roli.gigIds);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(18)" >
+		<span>></span><span id="out18"></span>
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Funktional (2)</h3>	
+	<textarea id="code19">
+var rockstar = function () {
+  self = {
+    karma: 10,
+    gigIds: []
+  }
+  return self;
+};
+
+var roli = rockstar();
+
+log(roli.gigIds);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(19)" >
+		<span>></span><span id="out19"></span>
+    </button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Funktional (3)</h3>	
+	<textarea id="code20">
+window.rockstarActions = [
+    { action: 'Stagedive', level: 1 },
+	{ action: 'Hit paparazzi', level: 2 }, 
+	{ action: 'Destroy hotel room', level: 3 } ];
+var rockstar = function () {
+  self = {
+	level: 2,
+    allowedActions: function () {
+      return rockstarActions.filter(function (action) {
+        return action.level &lt;= self.level;
+      });
+    }
+  };
+  return self;
+};
+
+var roli = rockstar();
+log(roli.allowedActions());</textarea>
+	<button type="button" class="console" onclick="executeSample(20)" >
+		<span>></span><span id="out20"></span>
+	</button>	
+	</article>
+	
+	
+	
+	
+</body>
 </html>
