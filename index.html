@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CodeMirror Tests</title>
+  <title>Was ich noch nie über JavaScript wissen wollte...</title>
   
   <script src="js/lib/codemirror.js"></script>
   <script src="js/addon/edit/matchbrackets.js"></script>
@@ -24,7 +24,7 @@
   <script> 
 $(document).ready(function() {
     $.fn.fullpage({
-		anchors: ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p28'],
+		anchors: ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p28', 'p29', 'p30', 'p31'],
 		navigation: true,
 		navigationPosition: 'left',
 		keyboardScrolling: false,
@@ -368,10 +368,9 @@ counter.increment();
 
 log(counter.value);
 	</textarea>
-	<button type="button" class="console" onclick="executeSample(9)" >eval</button>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(9)" >
 		<span>></span><span id="out9"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
@@ -390,10 +389,9 @@ foo();
 
 log(value);
 	</textarea>
-	<button type="button" class="console" onclick="executeSample(10)" >eval</button>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(10)" >
 		<span>></span><span id="out10"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
@@ -417,10 +415,9 @@ counter();
 
 log(value);
 	</textarea>
-	<button type="button" class="console" onclick="executeSample(11)" >eval</button>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(11)" >
 		<span>></span><span id="out11"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
@@ -451,11 +448,12 @@ log(i);
 	
 	<article class="section">
 	<h2>Vererbung ohne Klassen</h2>	
-	<h3></h3>	
+	<h3>Viele Möglichkeiten Verhalten zu vererben</h3>
 		<ul>
 			<li>Prototypisch</li>
 			<li>Pseudo-Klassisch</li>
 			<li>Funktional</li>
+			<li>Parts/Augmentation</li>
 		</ul>
 	</article>
 		
@@ -597,7 +595,7 @@ var rockstar = function () {
 
 var roli = rockstar();
 
-log(roli.gigIds);
+log(roli.karma);
 	</textarea>
 	<button type="button" class="console" onclick="executeSample(18)" >
 		<span>></span><span id="out18"></span>
@@ -610,17 +608,19 @@ log(roli.gigIds);
 	<h2>Vererbung ohne Klassen</h2>
 	<h3>Funktional (2)</h3>	
 	<textarea id="code19">
+var human = function () {
+  return { karma: 10 };
+}
+
 var rockstar = function () {
-  self = {
-    karma: 10,
-    gigIds: []
-  }
+  self = human();
+  self.gigIds = [];
   return self;
 };
 
 var roli = rockstar();
 
-log(roli.gigIds);
+log(roli.karma);
 	</textarea>
 	<button type="button" class="console" onclick="executeSample(19)" >
 		<span>></span><span id="out19"></span>
@@ -653,6 +653,132 @@ var roli = rockstar();
 log(roli.allowedActions());</textarea>
 	<button type="button" class="console" onclick="executeSample(20)" >
 		<span>></span><span id="out20"></span>
+	</button>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Parts/Augmentation</h3>	
+	<textarea id="code21">
+var human = function () {
+  return { karma: 10 };
+}
+
+var rockstar = function (self) {
+  self = self || {};
+  self.gigIds = [];
+  return self;
+};
+
+var roli = rockstar(human());
+
+log(roli.karma);		
+    </textarea>
+	<button type="button" class="console" onclick="executeSample(21)" >
+		<span>></span><span id="out21"></span>
+	</button>	
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Ein paar Patterns</h2>	
+	<h3></h3>
+		<ul>
+			<li>Prototype (trivial)</li>
+			<li>Proxy/Delegate (trivial)</li>
+			<li>Module = Namespace = Singleton</li>
+			<li>Interceptor</li>
+			<li>Template Method / Strategy</li>
+		</ul>
+	</article>
+		
+		
+		
+	<article class="section">
+	<h2>Ein paar Patterns</h2>
+	<h3>Module = Namespace = Singleton</h3>	
+	<textarea id="code22">
+var rockstar = (function() {
+	var create = function () {
+  	  	return {
+    		karma: 10,
+    		gigIds: []
+  	  	}
+	};
+
+	var module = {
+		create: create
+	};
+	return module;
+})();
+
+var roli = rockstar.create();
+log(roli.karma);
+    </textarea>
+	<button type="button" class="console" onclick="executeSample(22)" >
+		<span>></span><span id="out22"></span>
+	</button>	
+	</article>
+	
+	
+	
+	
+	<article class="section">
+	<h2>Ein paar Patterns</h2>
+	<h3>Interceptor</h3>	
+	<textarea id="code23">
+var interceptor = function(func) {
+	return function () {
+		var result = func.apply(this, arguments);
+		log("Function returned " + result);
+		return result;
+	}
+};
+
+var counter = {
+	value: 0,
+    inc: function () {
+		this.value += 1;
+    }	
+};	
+
+counter.inc();
+    </textarea>
+	<button type="button" class="console" onclick="executeSample(23)" >
+		<span>></span><span id="out23"></span>
+	</button>	
+	</article>
+	
+	
+	
+	
+	<article class="section">
+	<h2>Ein paar Patterns</h2>
+	<h3>Template Method / Strategy</h3>	
+	<textarea id="code24">
+var counter = function (incrementStrategy) {
+	self = {
+		value: 0,
+		inc: function () {
+			incrementStrategy.apply(self);
+		}
+	}
+	return self;
+};	
+
+var c = counter(function () {
+	this.value += 10;
+});
+
+c.inc();
+
+log(c.value);
+    </textarea>
+	<button type="button" class="console" onclick="executeSample(24)" >
+		<span>></span><span id="out24"></span>
 	</button>	
 	</article>
 	
