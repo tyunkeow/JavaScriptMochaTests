@@ -27,12 +27,13 @@ $(document).ready(function() {
 		anchors: ['p0', 'p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8', 'p9', 'p10', 'p11', 'p12', 'p13', 'p14', 'p15', 'p16', 'p17', 'p18', 'p19', 'p20', 'p21', 'p22', 'p23', 'p24', 'p25', 'p26', 'p27', 'p28'],
 		navigation: true,
 		navigationPosition: 'left',
+		keyboardScrolling: false,
 		resize: false
     });
 	
 	window.editor = [];
 
-	for (var i = 1; i < 20; i++) {
+	for (var i = 1; i < 30; i++) {
 
 		var textarea = document.getElementById("code" + i);
 		if (textarea) {
@@ -184,17 +185,16 @@ var b = true;
 
 log(typeof s);
 	</textarea>
-	<input type="submit" onclick="executeSample(1)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(1)" >
 		<span>></span><span id="out1"></span>
-	</div>
+	</button>
 	</article>
 		
 				
 				
 	<article class="section">
 	<h2>Ein paar Basics...</h2>	
-	<h3>Datentyp 'object'</h3>	
+	<h3>Datentyp ‘object’</h3>	
 	<textarea id="code2">
 // Objektliteral
 var rockstar = {
@@ -205,17 +205,16 @@ rockstar.numberOfGigs = 1000;
 
 log(typeof rockstar);
 	</textarea>
-	<input type="submit" onclick="executeSample(2)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(2)" >
 		<span>></span><span id="out2"></span>
-	</div>
+	</button>
 	</article>
 		
 				
 				
 	<article class="section">
 	<h2>Ein paar Basics...</h2>	
-	<h3>Datentyp 'function'</h3>	
+	<h3>Datentyp ‘function’</h3>	
 	<textarea id="code3">
 // Funktionsliteral
 var f = function (i) {
@@ -225,17 +224,16 @@ var f = function (i) {
 
 log(typeof f);
 	</textarea>
-	<input type="submit" onclick="executeSample(3)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(3)" >
 		<span>></span><span id="out3"></span>
-	</div>
+	</button>
 	</article>
 		
 				
 				
 	<article class="section">
 	<h2>Ein paar Basics...</h2>	
-	<h3>Datentypen 'undefined' und 'null'</h3>	
+	<h3>Datentypen ‘undefined’ und ‘null’</h3>	
 	<textarea id="code4">
 var u;
 var n = null;
@@ -244,16 +242,15 @@ var n = null;
 
 log(typeof u);
 	</textarea>
-	<input type="submit" onclick="executeSample(4)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(4)" >
 		<span>></span><span id="out4"></span>
-	</div>
+	</button>
 	</article>
 		
 
 
 	<article class="section">
-	<h2>Was ist "<em>this</em>"?</h2>	
+	<h2>Was ist “<em>this</em>” ?</h2>	
 	<h3>Aufrufmuster</h3>	
 		<ul>
 			<li>Funktion</li>
@@ -266,7 +263,7 @@ log(typeof u);
 
 						
 	<article class="section">
-	<h2>Was ist "this"?</h2>	
+	<h2>Was ist “this” ?</h2>	
 	<h3>Aufrufmuster: <em>Funktion</em></h3>	
 	<textarea id="code5">
 window.value = 5;
@@ -279,16 +276,15 @@ inc();
 
 log(window.value);
 	</textarea>
-	<input type="submit" onclick="executeSample(5)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(5)" >
 		<span>></span><span id="out5"></span>
-	</div>
+	</button>
 	</article>
 
 	
 	
 	<article class="section">
-	<h2>Was ist "this"?</h2>	
+	<h2>Was ist “this” ?</h2>	
 	<h3>Aufrufmuster: <em>Methode</em></h3>	
 	<textarea id="code6">
 var inc = function() {
@@ -304,16 +300,15 @@ counter.increment();
 
 log(counter.value);
 	</textarea>
-	<input type="submit" onclick="executeSample(6)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(6)" >
 		<span>></span><span id="out6"></span>
-	</div>
+	</button>
 	</article>
 	
 	
 	
 	<article class="section">
-	<h2>Was ist "this"?</h2>
+	<h2>Was ist “this” ?</h2>
 	<h3>Aufrufmuster: <em>Konstruktor</em></h3>	
 	<textarea id="code7">
 var I = function(i) {
@@ -324,16 +319,15 @@ var i = new I(5);
 
 log(i.value);
 	</textarea>
-	<input type="submit" onclick="executeSample(7)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(7)" >
 		<span>></span><span id="out7"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
 	
 	<article class="section">
-	<h2>Was ist "this"?</h2>
+	<h2>Was ist “this” ?</h2>
 	<h3>Aufrufmuster: <em>Apply</em></h3>	
 	<textarea id="code8">
 var inc = function() {
@@ -348,16 +342,15 @@ inc.apply(counter, null);
 
 log(counter.value);
 	</textarea>
-	<input type="submit" onclick="executeSample(8)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(8)" >
 		<span>></span><span id="out8"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
 	
 	<article class="section">
-	<h2>Was ist "this"?</h2>
+	<h2>Was ist “this” ?</h2>
 	<h3>Quiz</h3>	
 	<textarea id="code9">
 var counter = { 
@@ -375,7 +368,7 @@ counter.increment();
 
 log(counter.value);
 	</textarea>
-	<input type="submit" onclick="executeSample(9)" value="eval"/>
+	<button type="button" class="console" onclick="executeSample(9)" >eval</button>
 	<div class="console">
 		<span>></span><span id="out9"></span>
 	</div>	
@@ -397,7 +390,7 @@ foo();
 
 log(value);
 	</textarea>
-	<input type="submit" onclick="executeSample(10)" value="eval"/>
+	<button type="button" class="console" onclick="executeSample(10)" >eval</button>
 	<div class="console">
 		<span>></span><span id="out10"></span>
 	</div>	
@@ -424,7 +417,7 @@ counter();
 
 log(value);
 	</textarea>
-	<input type="submit" onclick="executeSample(11)" value="eval"/>
+	<button type="button" class="console" onclick="executeSample(11)" >eval</button>
 	<div class="console">
 		<span>></span><span id="out11"></span>
 	</div>	
@@ -449,10 +442,9 @@ var i = nextInt();
 
 log(i);
 	</textarea>
-	<input type="submit" onclick="executeSample(12)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(12)" >
 		<span>></span><span id="out12"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
@@ -484,10 +476,9 @@ log(roli.karma);
 //log(roli.__proto__);
 //var zenMaster = { karma: 2000 };
 	</textarea>
-	<input type="submit" onclick="executeSample(13)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(13)" >
 		<span>></span><span id="out13"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
@@ -510,10 +501,9 @@ karmaAdder(40);
 
 log(roli.karma);
 	</textarea>
-	<input type="submit" onclick="executeSample(14)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(14)" >
 		<span>></span><span id="out14"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
@@ -524,7 +514,7 @@ log(roli.karma);
 	<textarea id="code15">
 var rockstarActions = [
     { action: 'Stagedive', level: 1 },
-	{ action: 'Beat up paparazzi', level: 2 }, 
+	{ action: 'Hit paparazzi', level: 2 }, 
 	{ action: 'Destroy hotel room', level: 3 } ];
 
 var rockstar = {
@@ -539,17 +529,16 @@ var rockstar = {
 var tmp = rockstar.allowedActions();
 
 log(tmp);</textarea>
-	<input type="submit" onclick="executeSample(15)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(15)" >
 		<span>></span><span id="out15"></span>
-	</div>	
+	</button>
 	</article>
 	
 	
 	
 	<article class="section">
 	<h2>Vererbung ohne Klassen</h2>
-	<h3>Pseudo-Klassisch</h3>	
+	<h3>Pseudo-Klassisch (1)</h3>	
 	<textarea id="code16">
 var Rockstar = function () {
   this.karma = 10;
@@ -562,10 +551,34 @@ var roli = new Rockstar();
 
 log(roli.karma);
 	</textarea>
-	<input type="submit" onclick="executeSample(16)" value="eval"/>
-	<div class="console">
+	<button type="button" class="console" onclick="executeSample(16)" >
 		<span>></span><span id="out16"></span>
-	</div>	
+	</button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Pseudo-Klassisch (2)</h3>	
+	<textarea id="code17">
+var Human = function () {
+  this.karma = 10;
+};
+
+var Rockstar = function () {
+  this.gigIds = [];
+};
+
+Rockstar.prototype = new Human();
+
+var roli = new Rockstar();
+
+log(roli.karma);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(17)">
+		<span>></span><span id="out17"></span>
+	</button>
 	</article>
 	
 	
@@ -573,7 +586,7 @@ log(roli.karma);
 	<article class="section">
 	<h2>Vererbung ohne Klassen</h2>
 	<h3>Funktional (1)</h3>	
-	<textarea id="code17">
+	<textarea id="code18">
 var rockstar = function () {
   self = {
     karma: 10,
@@ -586,10 +599,9 @@ var roli = rockstar();
 
 log(roli.gigIds);
 	</textarea>
-	<input type="submit" onclick="executeSample(17)" value="eval"/>
-	<div class="console">
-		<span>></span><span id="out17"></span>
-	</div>	
+	<button type="button" class="console" onclick="executeSample(18)" >
+		<span>></span><span id="out18"></span>
+	</button>
 	</article>
 	
 	
@@ -597,10 +609,33 @@ log(roli.gigIds);
 	<article class="section">
 	<h2>Vererbung ohne Klassen</h2>
 	<h3>Funktional (2)</h3>	
-	<textarea id="code18">
+	<textarea id="code19">
+var rockstar = function () {
+  self = {
+    karma: 10,
+    gigIds: []
+  }
+  return self;
+};
+
+var roli = rockstar();
+
+log(roli.gigIds);
+	</textarea>
+	<button type="button" class="console" onclick="executeSample(19)" >
+		<span>></span><span id="out19"></span>
+    </button>
+	</article>
+	
+	
+	
+	<article class="section">
+	<h2>Vererbung ohne Klassen</h2>
+	<h3>Funktional (3)</h3>	
+	<textarea id="code20">
 window.rockstarActions = [
     { action: 'Stagedive', level: 1 },
-	{ action: 'Beat up paparazzi', level: 2 }, 
+	{ action: 'Hit paparazzi', level: 2 }, 
 	{ action: 'Destroy hotel room', level: 3 } ];
 var rockstar = function () {
   self = {
@@ -616,10 +651,9 @@ var rockstar = function () {
 
 var roli = rockstar();
 log(roli.allowedActions());</textarea>
-	<input type="submit" onclick="executeSample(18)" value="eval"/>
-	<div class="console">
-		<span>></span><span id="out18"></span>
-	</div>	
+	<button type="button" class="console" onclick="executeSample(20)" >
+		<span>></span><span id="out20"></span>
+	</button>	
 	</article>
 	
 	

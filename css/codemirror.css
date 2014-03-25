@@ -10,7 +10,7 @@
   /* Set height, width, borders, and global font properties here */
   font-family: 'Ubuntu Mono', monospace;
   height: 550px;
-  font-size: 80%;
+  font-size: 190%;
   line-height: 100%; 
 }
 .CodeMirror-scroll {
