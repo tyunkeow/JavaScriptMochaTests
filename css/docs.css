@@ -26,6 +26,7 @@ body {
   background: #0C4650;
   font-family: 'Lato', Helvetica, Arial, sans-serif;
   /*font-size: 230%;*/
+  font-size: 2vh;
 }
 
 p { margin-top: 0; }
